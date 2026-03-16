@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+    implementation("redis.clients:jedis:5.1.0")
     testImplementation(kotlin("test"))
 }
 
@@ -17,6 +18,11 @@ tasks.test {
     useJUnitPlatform()
 }
 
-kotlin {
-    jvmToolchain(8)
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = "17"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
